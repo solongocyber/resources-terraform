@@ -10,11 +10,19 @@ resource "aws_autoscaling_group" "asg" {
   vpc_zone_identifier       = var.vpc_zone_identifier
 }
 
-resource "aws_autoscaling_policy" "simple_scaling" {
-  name                   = "terraform-test"
+resource "aws_autoscaling_policy" "scaling_up" {
+  name                   = "terraform_Simple_Scaling_Policy_scale_up"
   scaling_adjustment     = 1
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 300
+  autoscaling_group_name = aws_autoscaling_group.asg.name
+}
+resource "aws_autoscaling_policy" "scale-down" {
+  name                   = "terraform_Simple_Scaling_Policy_scale_down"
+  scaling_adjustment     = 1
+  adjustment_type        = "ChangeInCapacity"
+  cooldown               = 300
+  policy_type            = "SimpleScaling"
   autoscaling_group_name = aws_autoscaling_group.asg.name
 }
 
@@ -33,5 +41,5 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization" {
   }
 
   alarm_description = "This metric monitors ec2 cpu utilization"
-  alarm_actions     = [aws_autoscaling_policy.simple_scaling.arn]
+  alarm_actions     = [aws_autoscaling_policy.scaling_up.arn]
 }
