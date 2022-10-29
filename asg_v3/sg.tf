@@ -1,7 +1,7 @@
 resource "aws_security_group" "asg_sg" {
   name        = replace(local.name , "rtype" , "auto_scaling_sg")
   description = "This sg is for auto scaling"
- 
+ vpc_id = data.terraform_remote_state.vpc_v3.outputs.vpc_id
  
 }
   resource "aws_security_group_rule" "asg_ingress" {

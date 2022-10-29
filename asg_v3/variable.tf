@@ -52,3 +52,31 @@ variable "egress_protocol" {
 type = number
 default = "-1"
 }
+
+variable "max_size" {
+    type = number
+    default = "5"
+}
+variable "min_size" {
+    type = number
+    default = "2"
+}
+variable "desired_capacity" {
+    type = number
+    default = "2"
+}
+
+variable "instance_type"{
+    type = string
+    default = "t2.micro"
+}
+
+variable "public_subnet" {
+    type = list(string)
+    default = [ "subnet-07764aa187a3ac208", "subnet-081f20c30fff10aad", "subnet-0469792b9c70690fe" ]
+}
+
+variable "vpc_v3_id" {
+    type = string
+    default = "vpc-0f467ff8dbe26fd17"
+}
