@@ -20,7 +20,7 @@ resource "aws_launch_configuration" "launch_conf_v3" {
 //     connection {
 //       type        = "ssh"
 //       user        = "ec2-user"
-//       host        = "self.public_ip"
+//       host        = 
 //       private_key = file("~/.ssh/id_rsa")
 //     }
 //   }
