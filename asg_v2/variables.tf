@@ -18,11 +18,6 @@ variable "instance_type"{
     default = "t2.micro"
 }
 
-variable "vpc_zone_identifier" {
-    type = list(string)
-    default = [ "subnet-0f7b40c9e8c06b924", "subnet-01452a396a84a7be9", "subnet-09a5ffbb642a2264c" ]
-}
-
 variable "max_size" {
     type = number
     default = "5"
